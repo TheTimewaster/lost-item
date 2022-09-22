@@ -7,10 +7,12 @@
 <script setup lang="ts">
 const { $appwriteAccountClient } = useNuxtApp();
 const signIn = () => {
-  $appwriteAccountClient.createOAuth2Session('github', 'http://localhost:3000/items', 'http://localhost:3000')
-}
+  $appwriteAccountClient.createOAuth2Session(
+    'github',
+    'http://localhost:3000/items',
+    'http://localhost:3000'
+  );
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

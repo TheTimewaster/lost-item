@@ -36,5 +36,6 @@ module.exports = {
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': ['error'],
     'prettier/prettier': ['off', { singleQuote: true }],
+    'newline-per-chained-call': ['warn']
   },
 };
