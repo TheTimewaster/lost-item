@@ -1,5 +1,7 @@
 <template>
-  <NuxtPage></NuxtPage>
+  <div>
+    <NuxtPage></NuxtPage>
+  </div>
 </template>
 <script lang="ts" setup>  
 useHead({

@@ -21,9 +21,9 @@
 </template>
 
 <script setup lang="ts">
-  useHead({
-    title: 'Quý | Your service for tagging your personal items'
-  });
+useHead({
+  title: 'Quý | Your service for tagging your personal items'
+});
 </script>
 
 <style scoped>

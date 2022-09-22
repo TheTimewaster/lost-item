@@ -30,6 +30,7 @@
   "dependencies": {
     "@pinia/nuxt": "^0.4.2",
     "appwrite": "^10.0.1",
-    "nanoid": "^4.0.0"
+    "nanoid": "^4.0.0",
+    "node-appwrite": "^8.1.0"
   }
 }
