@@ -3,6 +3,9 @@
     "your_items": "Your items",
     "messages": {
       "error": "Something went wrong. 😭"
+    },
+    "login": {
+      "sign_in_with": "Signin with"
     }
   }
 }

@@ -3,6 +3,9 @@
     "your_items": "Deine Gegenstände",
     "messages": {
       "error": "Etwas ist schiefgelaufen! 😭"
+    },
+    "login": {
+      "sign_in_with": "Anmelden mit"
     }
   }
 }

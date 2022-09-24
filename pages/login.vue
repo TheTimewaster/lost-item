@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { useAccountStore } from '~~/pinia/account';
 
+const i18n = useI18n();
+
 definePageMeta({
   middleware: () => {
     const accountStore = useAccountStore();
@@ -8,9 +10,9 @@ definePageMeta({
       return '/items';
   },
 });
-const { $appwriteAccountClient } = useNuxtApp();
+const { $appwriteAccount } = useNuxtApp();
 const signIn = () => {
-  $appwriteAccountClient.createOAuth2Session(
+  $appwriteAccount.createOAuth2Session(
     'github',
     'http://localhost:3000/items',
     'http://localhost:3000',
@@ -20,8 +22,9 @@ const signIn = () => {
 
 <template>
   <div>
+    <p>{{ i18n.t('app.login.sign_in_with') }}</p>
     <button @click="signIn">
-      Sign in with Github
+      Github
     </button>
   </div>
 </template>
