@@ -5,6 +5,14 @@
 </template>
 
 <script setup lang="ts">
+import { useAccountStore } from '~~/pinia/account';
+
+definePageMeta({
+  middleware: () => {
+    const accountStore = useAccountStore();
+    if (accountStore.isLoggedIn) return '/items';
+  },
+});
 const { $appwriteAccountClient } = useNuxtApp();
 const signIn = () => {
   $appwriteAccountClient.createOAuth2Session(
