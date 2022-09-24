@@ -1,0 +1,8 @@
+{
+  "app": {
+    "your_items": "Deine Gegenstände",
+    "messages": {
+      "error": "Etwas ist schiefgelaufen! 😭"
+    }
+  }
+}

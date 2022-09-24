@@ -18,7 +18,7 @@ useHead({
       <div class="flex justify-center md:justify-start mt-4 gap-4">
         <nuxt-link
           to="/items"
-          class="px-6 py-3 transition-colors bg-yellow-500 hover:bg-yellow-400 rounded-xl font-bold text-white"
+          class="px-6 py-3 transition-colors bg-lemon-500 hover:bg-lemon-400 rounded-xl font-bold text-white"
         >
           Get started
         </nuxt-link>
