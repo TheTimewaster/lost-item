@@ -15,7 +15,12 @@ export default defineNuxtPlugin(async () => {
         .setProject('quy-lost-and-found');
 
       appwriteAccount = new Account(appwriteClient);
-      const account = await appwriteAccount.get();
+      let account = null;
+
+      if (accountStore.account == null) {
+        account = await appwriteAccount.get();
+        accountStore.account = account;
+      }
 
       let isTokenExpired = false;
       if (sessionCookie.value != null) {
@@ -28,22 +33,24 @@ export default defineNuxtPlugin(async () => {
         const { jwt } = await appwriteAccount.createJWT();
         sessionCookie.value = jwt;
       }
-
-      accountStore.account = account;
     } catch (error) {
       console.error(error);
     }
   } else if (sessionCookie.value != null) {
-    appwriteClient = new Appwrite.Client();
-    appwriteAccount = new Appwrite.Account(appwriteClient);
+    try {
+      appwriteClient = new Appwrite.Client();
+      appwriteAccount = new Appwrite.Account(appwriteClient);
 
-    appwriteClient
-      .setEndpoint('http://localhost/v1')
-      .setProject('quy-lost-and-found')
-      .setJWT(sessionCookie.value);
+      appwriteClient
+        .setEndpoint('http://localhost/v1')
+        .setProject('quy-lost-and-found')
+        .setJWT(sessionCookie.value);
 
-    const account = await appwriteAccount.get();
-    accountStore.account = account;
+      const account = await appwriteAccount.get();
+      accountStore.account = account;
+    } catch (error) {
+      // do nothing and let the client fix
+    }
   }
 
   return {
