@@ -4,6 +4,7 @@ import { useAccountStore } from '~~/pinia/account';
 
 export default defineNuxtPlugin(async () => {
   let appwriteClient, appwriteAccount;
+  const { application, endpoint } = useAppConfig();
   const sessionCookie = useCookie('quy-session');
   const accountStore = useAccountStore();
 
@@ -11,8 +12,8 @@ export default defineNuxtPlugin(async () => {
     try {
       appwriteClient = new Client();
       appwriteClient
-        .setEndpoint('http://localhost/v1')
-        .setProject('quy-lost-and-found');
+        .setEndpoint(endpoint)
+        .setProject(application);
 
       appwriteAccount = new Account(appwriteClient);
       let account = null;
@@ -43,8 +44,8 @@ export default defineNuxtPlugin(async () => {
       appwriteAccount = new Appwrite.Account(appwriteClient);
 
       appwriteClient
-        .setEndpoint('http://localhost/v1')
-        .setProject('quy-lost-and-found')
+        .setEndpoint(endpoint)
+        .setProject(application)
         .setJWT(sessionCookie.value);
 
       const account = await appwriteAccount.get();
