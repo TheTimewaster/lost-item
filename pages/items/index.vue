@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type QuyModels from '~~/types/models';
+const { t } = useI18n();
 
 definePageMeta({
   layout: 'application',
@@ -7,13 +8,12 @@ definePageMeta({
 });
 
 useHead({
-  title: 'Your Items | Quy',
+  title: `${t('app.your_items')} | Quý`,
 });
 
-const { t } = useI18n();
-
+const { databaseId, collectionId } = useAppConfig();
 const databases = useItems();
-const { data, error } = await useAsyncData('documents', () => databases.listDocuments<QuyModels.Item>('632f022a4cfb7b0fa965', '632f022f915002331adc'));
+const { data, error } = await useAsyncData('documents', () => databases.listDocuments<QuyModels.Item>(databaseId, collectionId));
 </script>
 
 <template>
