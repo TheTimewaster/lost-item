@@ -5,5 +5,5 @@ export default defineNuxtRouteMiddleware(() => {
   if (accountStore.isLoggedIn)
     return true;
 
-  return '/';
+  return '/login';
 });
