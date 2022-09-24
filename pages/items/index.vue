@@ -16,7 +16,7 @@ const { data, error } = await useAsyncData('documents', () => databases.listDocu
 
 <template>
   <div>
-    <h1 class="text-4xl font-bold">
+    <h1 class="text-4xl font-bold font-serif">
       Your Items
     </h1>
 

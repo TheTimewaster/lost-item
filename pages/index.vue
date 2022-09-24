@@ -7,11 +7,11 @@ useHead({
 <template>
   <main>
     <section class="md:py-28 lg:py-36">
-      <h1 class="text-7xl font-serif font-semibold">
+      <h1 class="text-7xl font-serif font-font-bold">
         Quý
       </h1>
       <p class="mt-4">
-        <span class="font-serif font-semibold">Quý</span>
+        <span class="font-serif font-font-bold">Quý</span>
         is a simple and privacy focused way to manage your lost and found items.
         <br>
       </p>
