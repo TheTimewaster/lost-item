@@ -1,0 +1,59 @@
+{
+    "projectId": "quy-lost-and-found",
+    "projectName": "Quy - Lost and Found",
+    "collections": [
+        {
+            "$id": "632f022f915002331adc",
+            "$createdAt": "2022-09-24T13:12:15.595+00:00",
+            "$updatedAt": "2022-09-24T13:23:15.906+00:00",
+            "$permissions": [],
+            "databaseId": "632f022a4cfb7b0fa965",
+            "name": "items",
+            "enabled": true,
+            "documentSecurity": true,
+            "attributes": [
+                {
+                    "key": "oid",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 10,
+                    "default": null
+                },
+                {
+                    "key": "status",
+                    "type": "integer",
+                    "status": "available",
+                    "required": false,
+                    "array": false,
+                    "min": 0,
+                    "max": 3,
+                    "default": 1
+                },
+                {
+                    "key": "name",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                }
+            ],
+            "indexes": [
+                {
+                    "key": "updatedAt_index",
+                    "type": "key",
+                    "status": "available",
+                    "attributes": [
+                        "$updatedAt"
+                    ],
+                    "orders": [
+                        "DESC"
+                    ]
+                }
+            ]
+        }
+    ]
+}
