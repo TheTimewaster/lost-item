@@ -1,4 +1,4 @@
-import { defineConfig } from 'windicss/helpers'
+import { defineConfig } from 'windicss/helpers';
 
 export default defineConfig({
   extract: {
@@ -14,7 +14,7 @@ export default defineConfig({
         sans: ['Inter', 'sans-serif'],
         serif: ['Source Serif Pro', 'serif'],
         body: ['Inter', 'sans-serif'],
-      }
-    }
-  }
-})
+      },
+    },
+  },
+});

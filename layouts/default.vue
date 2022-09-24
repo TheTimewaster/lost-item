@@ -1,8 +1,3 @@
-<template>
-  <div>
-    <nuxt-page class="max-w-7xl mx-auto p-4"></nuxt-page>
-  </div>
-</template>
 <script lang="ts" setup>
 useHead({
   bodyAttrs: {
@@ -10,3 +5,9 @@ useHead({
   },
 });
 </script>
+
+<template>
+  <div>
+    <nuxt-page class="max-w-7xl mx-auto p-4" />
+  </div>
+</template>

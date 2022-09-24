@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { Models } from 'appwrite';
+import type { Models } from 'appwrite';
 export const useAccountStore = defineStore('account', {
   state: () => {
     return {
@@ -7,6 +7,6 @@ export const useAccountStore = defineStore('account', {
     };
   },
   getters: {
-    isLoggedIn: (state) => state.account != null,
+    isLoggedIn: state => state.account != null,
   },
 });

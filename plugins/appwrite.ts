@@ -1,6 +1,6 @@
-import { Client, Account } from 'appwrite';
-import { useAccountStore } from '~~/pinia/account';
+import { Account, Client } from 'appwrite';
 import Appwrite from 'node-appwrite';
+import { useAccountStore } from '~~/pinia/account';
 
 export default defineNuxtPlugin(async () => {
   let appwriteClient, appwriteAccount;
@@ -25,7 +25,6 @@ export default defineNuxtPlugin(async () => {
       let isTokenExpired = false;
       if (sessionCookie.value != null) {
         const { exp } = JSON.parse(atob(sessionCookie.value.split('.')[1]));
-        console.log(exp, Math.floor(new Date().getTime() / 1000));
         isTokenExpired = exp < Math.floor(new Date().getTime() / 1000);
       }
 
@@ -33,10 +32,12 @@ export default defineNuxtPlugin(async () => {
         const { jwt } = await appwriteAccount.createJWT();
         sessionCookie.value = jwt;
       }
-    } catch (error) {
+    }
+    catch (error) {
       console.error(error);
     }
-  } else if (sessionCookie.value != null) {
+  }
+  else if (sessionCookie.value != null) {
     try {
       appwriteClient = new Appwrite.Client();
       appwriteAccount = new Appwrite.Account(appwriteClient);
@@ -48,7 +49,8 @@ export default defineNuxtPlugin(async () => {
 
       const account = await appwriteAccount.get();
       accountStore.account = account;
-    } catch (error) {
+    }
+    catch (error) {
       // do nothing and let the client fix
     }
   }
