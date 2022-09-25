@@ -18,7 +18,8 @@ export default defineNuxtPlugin(async () => {
       appwriteAccount = new Account(appwriteClient);
       let account = null;
 
-      if (accountStore.account == null) {
+      const session = await appwriteAccount.getSession('current');
+      if (session == null) {
         account = await appwriteAccount.get();
         accountStore.account = account;
       }
