@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { AppBarHeaderKey } from '~~/scripts/symbols';
 import type QuyModels from '~~/types/models';
 const { t } = useI18n();
 
@@ -14,15 +15,15 @@ useHead({
 const { databaseId, collectionId } = useAppConfig();
 const databases = useItems();
 const { data, error } = await useAsyncData('items', () => databases.listDocuments<QuyModels.Item>(databaseId, collectionId));
+
+const header = inject(AppBarHeaderKey);
+if (header != null)
+  header.value = t('app.your_items');
 </script>
 
 <template>
   <div>
-    <h1 class="font-bold font-serif text-4xl">
-      {{ t('app.your_items') }}
-    </h1>
-
-    <items-list v-if="data != null && error == null" :items="data.documents" class="mt-4" />
+    <items-list v-if="data != null && error == null" :items="data.documents" />
 
     <p v-else-if="error != null" class="text-center">
       {{ t('app.messages.error') }}
