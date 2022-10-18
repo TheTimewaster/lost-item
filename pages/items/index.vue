@@ -13,12 +13,12 @@ useHead({
 
 const { databaseId, collectionId } = useAppConfig();
 const databases = useItems();
-const { data, error } = await useAsyncData('documents', () => databases.listDocuments<QuyModels.Item>(databaseId, collectionId));
+const { data, error } = await useAsyncData('items', () => databases.listDocuments<QuyModels.Item>(databaseId, collectionId));
 </script>
 
 <template>
   <div>
-    <h1 class="text-4xl font-bold font-serif">
+    <h1 class="font-bold font-serif text-4xl">
       {{ t('app.your_items') }}
     </h1>
 
