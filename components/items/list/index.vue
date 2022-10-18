@@ -15,11 +15,14 @@ defineProps({
     <template v-if="items.length > 0">
       <items-list-item v-for="item in items" :key="item.id" :item="item" />
     </template>
-    <template v-else>
-      <button class="bg-lemon px-4 py-2 font-bold">
+    <div v-else class="flex flex-col min-h-64 justify-center items-center">
+      <p class="mb-4">
+        Seems like you did not added an item.
+      </p>
+      <nuxt-link to="/items/add" class="bg-lemon rounded-lg font-bold py-2 px-4 block">
         Add an item
-      </button>
-    </template>
+      </nuxt-link>
+    </div>
   </div>
 </template>
 

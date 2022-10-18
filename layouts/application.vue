@@ -1,10 +1,16 @@
 <script setup lang="ts">
+import { AppBarHeaderKey } from '~~/scripts/symbols';
+
+const appBarHeader = ref<string>('Quý');
+provide(AppBarHeaderKey, appBarHeader);
 </script>
 
 <template>
-  <div class="pt-14">
-    <app-bar class="fixed top-0 z-10 border-b-light-900 border-b-1" />
-    <nuxt-page class="max-w-7xl mx-auto p-4" />
+  <div class="bg-lemon-50">
+    <div class="mx-auto max-w-7xl relative">
+      <app-bar class="w-full top-0 left-0 z-10" :header="appBarHeader" />
+      <nuxt-page class="bg-white rounded-t-xl p-4" />
+    </div>
   </div>
 </template>
 
