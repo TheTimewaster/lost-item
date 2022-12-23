@@ -55,5 +55,22 @@
                 }
             ]
         }
+    ],
+    "functions": [
+        {
+            "$id": "63a5fc3b9f3305ee1cce",
+            "name": "generate-qr-code",
+            "runtime": "node-16.0",
+            "path": "functions/generate-qr-code",
+            "entrypoint": "src/index.js",
+            "ignore": [
+                "node_modules",
+                ".npm"
+            ],
+            "execute": [],
+            "events": [],
+            "schedule": "",
+            "timeout": 15
+        }
     ]
 }
