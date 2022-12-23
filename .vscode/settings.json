@@ -8,4 +8,7 @@
   "i18n-ally.sourceLanguage": "en",
   "i18n-ally.keystyle": "nested",
   "windicss.sortOnSave": true,
+  "windicss.foldByLength": true,
+  "windicss.enableCodeFolding": true,
+  "windicss.foldLength": 5,
 }

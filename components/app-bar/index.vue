@@ -28,13 +28,7 @@ const parentRoute = computed(() => {
 </script>
 
 <template>
-  <div class="flex w-full py-2 py-md-4 px-4 justify-between">
-    <div class="flex">
-      <nuxt-link v-if="parentRoute != null" :to="parentRoute" class="text-center mr-2 py-2 px-1 w-8 block">
-        <icon name="fa6-solid:chevron-left" class="text-2xl text-dark-50" />
-      </nuxt-link>
-      <span class="font-bold font-serif text-4xl"> {{ header }} </span>
-    </div>
+  <div class="flex w-full py-2 px-4 justify-end">
     <button class="rounded-lg font-bold bg-lemon-500 py-2 px-4" @click="logout">
       Logout
     </button>

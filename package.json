@@ -13,17 +13,17 @@
     "appwrite": "^10.0.1",
     "nanoid": "^4.0.0",
     "node-appwrite": "^8.1.0",
-    "sass": "^1.55.0",
-    "vuetify": "^3.0.0-beta.13"
+    "primevue": "^3",
+    "sass": "^1.55.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.27.0",
-    "@nuxt/kit": "^3.0.0-rc.11",
+    "@nuxt/kit": "^3.0.0",
     "@vueuse/core": "^9.2.0",
     "@vueuse/nuxt": "^9.2.0",
     "appwrite-cli": "^1.1.1",
     "eslint": "^8.23.1",
-    "nuxt": "3.0.0-rc.10",
+    "nuxt": "^3.0.0",
     "nuxt-icon": "^0.1.6",
     "nuxt-windicss": "^2.5.2",
     "typescript": "^4.8.3",

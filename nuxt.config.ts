@@ -58,8 +58,12 @@ export default defineNuxtConfig({
       // },
     },
   },
+  css: [
+    'primevue/resources/themes/tailwind-light/theme.css',
+    'primevue/resources/primevue.css',
+  ],
   build: {
-    transpile: ['vuetify'],
+    transpile: ['primevue'],
   },
   vite: {
     define: {

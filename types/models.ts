@@ -12,6 +12,7 @@ declare namespace QuyModels {
     oid: string
     status: ItemStatus
     name: string
+    description?: string
   }
 }
 
