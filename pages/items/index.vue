@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { AppBarHeaderKey } from '~~/scripts/symbols';
-import type QuyModels from '~~/types/models';
+import type { Item } from '~~/types/models';
 const { t } = useI18n();
 
 definePageMeta({
@@ -14,7 +14,7 @@ useHead({
 
 const { databaseId, collectionId } = useAppConfig();
 const databases = useItems();
-const { data, error } = await useAsyncData('items', () => databases.listDocuments<QuyModels.Item>(databaseId, collectionId));
+const { data, error } = await useAsyncData('items', () => databases.listDocuments<Item>(databaseId, collectionId));
 
 const header = inject(AppBarHeaderKey);
 if (header != null)

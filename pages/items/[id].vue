@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Query } from 'node-appwrite';
-import type QuyModels from '~~/types/models';
+import type { Item } from '~~/types/models';
 
 definePageMeta({
   layout: 'application',
@@ -13,15 +13,15 @@ const route = useRoute();
 
 const { databaseId, collectionId } = useAppConfig();
 const databases = useItems();
-const item = ref<QuyModels.Item>();
+const item = ref<Item>();
+
 const { data: itemData, error } = await useAsyncData('item', () => {
   try {
-    return databases.listDocuments<QuyModels.Item>(
+    return databases.getDocument<Item>(
       databaseId,
       collectionId,
-      [
-        Query.equal('oid', route.params.id),
-      ]);
+      route.params.id as string,
+    );
   }
   catch (error) {
     console.error(error);
@@ -29,8 +29,8 @@ const { data: itemData, error } = await useAsyncData('item', () => {
   }
 });
 
-if (itemData.value != null && itemData.value.total > 0)
-  item.value = itemData.value.documents[0];
+if (itemData.value != null)
+  item.value = itemData.value as Item;
 
 useHead({
   title: item.value == null ? 'Quý' : `${item.value.name} | Quý`,
@@ -38,7 +38,7 @@ useHead({
 </script>
 
 <template>
-  <div class="p-4">
+  <main>
     <p v-if="error != null" class="text-center">
       {{ i18n.t('app.messages.error') }}
     </p>
@@ -64,10 +64,12 @@ useHead({
               <icon name="fa6-solid:pen" class="text-sm" />
             </button>
           </div>
-          <p class="font-bold">
+          <p class="font-bold text-sm">
             Description
           </p>
-          <p />
+          <p>
+            {{ item.description }}
+          </p>
         </div>
 
         <div class="rounded-xl bg-lemon-100 p-4">
@@ -77,7 +79,7 @@ useHead({
         </div>
       </div>
     </template>
-  </div>
+  </main>
 </template>
 
 <style scoped>

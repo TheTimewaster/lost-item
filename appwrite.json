@@ -13,15 +13,6 @@
             "documentSecurity": true,
             "attributes": [
                 {
-                    "key": "oid",
-                    "type": "string",
-                    "status": "available",
-                    "required": true,
-                    "array": false,
-                    "size": 10,
-                    "default": null
-                },
-                {
                     "key": "status",
                     "type": "integer",
                     "status": "available",
@@ -36,6 +27,15 @@
                     "type": "string",
                     "status": "available",
                     "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                }, {
+                                    
+                    "key": "description",
+                    "type": "string",
+                    "status": "available",
+                    "required": false,
                     "array": false,
                     "size": 255,
                     "default": null
