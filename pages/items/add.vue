@@ -46,17 +46,29 @@ const addItem = async () => {
 
 <template>
   <main>
-    <h1>Add an item</h1>
-    <InputText
-      id="new-item-name"
-      v-model="newItem.name"
-      label="Name"
-      class="mb-2"
-    />
-    <InputText id="new-item-description" v-model="newItem.description" label="Description" />
+    <div class="flex font-serif font-bold text-4xl text-gray-400 items-center justify-between">
+      <span>
+        <nuxt-link to="/items" class="transition-colors hover:text-black">
+          Your Items
+        </nuxt-link>
+        <span class="mx-4 text-4xl text-gray-400">/</span>
+        <h1 class="text-black mr-4 inline">
+          Add item
+        </h1>
+      </span>
+    </div>
 
-    <div class="flex mt-4 justify-center" @click="addItem">
-      <Button label="Add" class="max-w-[200px] w-100" />
+    <div class="mt-8">
+      <QInputText
+        id="new-item-name"
+        v-model="newItem.name"
+        label="Name"
+        class="mb-2"
+      />
+      <QInputText id="new-item-description" v-model="newItem.description" label="Description" />
+      <div class="flex mt-4 justify-center" @click="addItem">
+        <QButton label="Add" class="max-w-[200px] w-100" />
+      </div>
     </div>
   </main>
 </template>

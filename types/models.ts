@@ -3,8 +3,8 @@ import type * as AppWrite from 'appwrite';
 export enum ItemStatus {
   ACTIVE,
   LOST,
-  LOST_FOREVER,
   FOUND,
+  LOST_FOREVER,
 }
 
 export interface Item extends AppWrite.Models.Document {

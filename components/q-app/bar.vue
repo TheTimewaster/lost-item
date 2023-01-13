@@ -29,7 +29,7 @@ const parentRoute = computed(() => {
 
 <template>
   <div class="flex w-full py-2 px-4 justify-end">
-    <button class="rounded-lg font-bold bg-lemon-500 py-2 px-4" @click="logout">
+    <button class="rounded-xl font-bold bg-lemon-500 py-2 px-4" @click="logout">
       Logout
     </button>
   </div>

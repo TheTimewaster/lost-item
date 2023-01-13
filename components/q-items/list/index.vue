@@ -18,14 +18,14 @@ defineProps({
       </span>
     </div>
     <div v-if="items.length > 0" class="mt-8">
-      <items-list-item
+      <q-items-list-item
         v-for="item in items"
         :key="item.id"
         :item="item"
         class="mb-4"
       />
       <div class="flex justify-center">
-        <nuxt-link to="/items/add" class="bg-lemon rounded-lg font-bold py-2 px-4 block">
+        <nuxt-link to="/items/add" class="bg-lemon rounded-xl font-bold py-2 px-4 block">
           Add an item
         </nuxt-link>
       </div>
@@ -34,7 +34,7 @@ defineProps({
       <p class="mb-4">
         Seems like you did not added an item.
       </p>
-      <nuxt-link to="/items/add" class="bg-lemon rounded-lg font-bold py-2 px-4 block">
+      <nuxt-link to="/items/add" class="bg-lemon rounded-xl font-bold py-2 px-4 block">
         Add an item
       </nuxt-link>
     </div>

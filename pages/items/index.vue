@@ -23,7 +23,7 @@ if (header != null)
 
 <template>
   <div>
-    <items-list v-if="data != null && error == null" :items="data.documents" />
+    <q-items-list v-if="data != null && error == null" :items="data.documents" />
 
     <p v-else-if="error != null" class="text-center">
       {{ t('app.messages.error') }}

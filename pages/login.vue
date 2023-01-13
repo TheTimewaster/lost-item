@@ -66,28 +66,21 @@ const loginWithCredentials = async (event: Event) => {
     </h1>
 
     <form class="mt-4" @submit="loginWithCredentials">
-      <label for="email" class="block">
-        <small>E-Mail</small>
-      </label>
-      <input
-        id="email"
+      <q-input-text
+        id="login-password"
         v-model="credentials.email"
-        type="text"
-        class="border rounded-xl border-gray-400 w-full py-2 px-4 hover:outline-lemon focus:outline-lemon"
+        label="E-Mail"
         :disabled="disableForm"
-      >
+      />
 
-      <label for="password" class="mt-4 block">
-        <small>Password</small>
-      </label>
-      <input
-        id="password"
+      <q-input-text
+        id="login-password"
         v-model="credentials.password"
+        label="Password"
         type="password"
-        class="border rounded-xl border-gray-400 w-full py-2 px-4 hover:outline-lemon focus:outline-lemon"
-        :disabled="disableForm"
-        autocomplete="true"
-      >
+        autocomplete="current-password"
+        disable-form
+      />
 
       <p v-if="errorMessage.length > 0" class="mt-4">
         {{ errorMessage }}
@@ -98,12 +91,12 @@ const loginWithCredentials = async (event: Event) => {
         role="submit"
         :disabled="disableForm"
       >
-        Sign in
+        {{ i18n.t('app.login.login') }}
       </button>
     </form>
 
     <p class="mt-4">
-      or sign in with...
+      {{ i18n.t('app.login.or_login_with') }}
     </p>
 
     <div class="mt-4">

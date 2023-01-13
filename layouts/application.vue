@@ -6,12 +6,13 @@ provide(AppBarHeaderKey, appBarHeader);
 </script>
 
 <template>
-  <div class="bg-lemon-50">
-    <div class="mx-auto max-w-7xl relative">
-      <app-bar class="w-full top-0 left-0 z-10" :header="appBarHeader" />
-      <nuxt-page class="bg-white rounded-t-xl p-4" />
+  <div class="h-screen bg-lemon-50">
+    <div class="mx-auto h-100 max-w-7xl relative">
+      <q-app-bar class="w-full top-0 left-0 z-10" :header="appBarHeader" />
+      <nuxt-page class="bg-white rounded-t-lg p-4" />
     </div>
   </div>
+  <toast />
 </template>
 
 <style lang="scss" scoped></style>
