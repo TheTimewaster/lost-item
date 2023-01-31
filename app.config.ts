@@ -1,4 +1,4 @@
-import AppwriteConfig from './appwrite.json';
+import AppwriteConfig from './appwrite/appwrite.json';
 
 export default defineAppConfig({
   appwrite: {
