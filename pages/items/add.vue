@@ -4,6 +4,7 @@ import { nanoid } from 'nanoid';
 import { Role } from 'node-appwrite';
 import { useAccountStore } from '~~/pinia/account';
 import type { Item } from '~~/types/models';
+import { ItemStatus } from '~~/types/models';
 
 definePageMeta({
   layout: 'application',
@@ -28,12 +29,13 @@ const router = useRouter();
 const account = useAccountStore();
 const addItem = async () => {
   const { databaseId, collectionId } = useAppConfig();
-  const databases = useItems();
+  const databases = useDatabases();
   const newId = nanoid(8);
 
   await databases.createDocument<Item>(databaseId, collectionId, newId, {
     name: newItem.name,
     description: newItem.description,
+    status: ItemStatus.ACTIVE,
   }, [
     Permission.read(Role.any()),
     Permission.read(Role.user(account.account.$id)),
@@ -52,7 +54,7 @@ const addItem = async () => {
           Your Items
         </nuxt-link>
         <span class="mx-4 text-4xl text-gray-400">/</span>
-        <h1 class="text-black mr-4 inline">
+        <h1 class="text-white mr-4 inline">
           Add item
         </h1>
       </span>

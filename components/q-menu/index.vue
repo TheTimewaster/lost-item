@@ -1,50 +1,81 @@
 <script setup lang="ts">
 import type { MenuItem } from 'primevue/menuitem';
-import Menu from 'primevue/menu/Menu.vue';
-import type MenuType from 'primevue/menu/Menu';
+import { type QButton } from '#components';
 
-defineProps<{ model: Array<MenuItem & { faIcon?: string }> }>();
-const menu = ref<MenuType>();
-const openMenu = ($event: Event) => {
-  if (menu.value != null)
-    menu.value.toggle($event);
+defineProps<{ items: Array<MenuItem & { faIcon?: string }> }>();
+
+const menuRoot = ref<HTMLDivElement>();
+
+const menuOpened = ref<boolean>(false);
+const menuBody = ref<HTMLDivElement>();
+const openMenu = () => {
+  menuOpened.value = true;
 };
+onClickOutside(menuBody, () => {
+  menuOpened.value = false;
+});
+const bodyPositionStyle = ref<Record<string, string>>({});
+
+const { isSmallerOrEqual } = useBreakpoints({
+  md: 640,
+});
+
+watchEffect(() => {
+  const root = unref(menuRoot);
+  const body = unref(menuBody);
+  if (root == null || body == null)
+    return;
+
+  const { x, y, height, width: rootWidth } = root.getBoundingClientRect();
+  const { width: bodyWidth } = body.getBoundingClientRect();
+
+  if (isSmallerOrEqual('md')) { bodyPositionStyle.value = {}; return; }
+
+  if (x + bodyWidth > document.body.clientWidth) {
+    bodyPositionStyle.value = {
+      left: `${x + rootWidth - bodyWidth}px`,
+      top: `${y + height}px`,
+      zIndex: '1000',
+    };
+    return;
+  }
+
+  bodyPositionStyle.value = {
+    left: `${x}px`,
+    top: `${y + height}px`,
+    zIndex: '1000',
+  };
+});
 </script>
 
 <template>
-  <slot>
-    <q-button
-      square
-      round
-      size="sm"
-      type="secondary"
-      @click="openMenu"
+  <div ref="menuRoot" class="inline-block">
+    <slot>
+      <QButton
+        square
+        round
+        size="sm"
+        type="secondary"
+        @click="openMenu"
+      >
+        <icon name="fa6-solid:ellipsis" class="mr-1" />
+      </QButton>
+    </slot>
+  </div>
+  <Teleport to="body">
+    <div
+      v-if="menuOpened"
+      ref="menuBody"
+      class="bg-white rounded-xl w-full bottom-0 shadow-2xl absolute md:bottom-auto md:shadow-xl md:max-h-[200px] md:w-[200px] dark:bg-dark-400"
+      :style="bodyPositionStyle"
     >
-      <icon name="fa6-solid:ellipsis" class="mr-1" />
-    </q-button>
-  </slot>
-  <Menu ref="menu" :model="model" popup>
-    <template #item="{ item: menuItem }">
-      <router-link
-        v-if="menuItem.to"
-        :to="menuItem.to"
-        class="py-2 px-4 block"
-      >
-        <icon :name="menuItem.faIcon" class="mr-2" />
-        {{ menuItem.label }}
-      </router-link>
-      <a
-        v-else
-        class="py-2 px-4 block"
-        @click.stop="menuItem.command"
-      >
-        <icon :name="menuItem.faIcon" class="mr-2" />
-        {{ menuItem.label }}
-      </a>
-    </template>
-  </Menu>
+      <q-menu-item v-for="(item, index) in items" :key="index" :item="item" />
+    </div>
+  </Teleport>
 </template>
 
-<style scoped>
-
+<style lang="postcss">
+.p-menu {
+  @apply shadow-xl py-0 w-[200px] !rounded-xl;
+}
 </style>

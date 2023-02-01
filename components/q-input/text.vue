@@ -28,7 +28,7 @@ const attrs = useAttrs();
     <input
       :id="id"
       :value="modelValue"
-      class="border rounded-xl outline-transparent border-gray-400 w-full p-2 hover:border-lemon focus:outline-lemon"
+      class="bg-white border rounded-xl outline-transparent border-gray-400 w-full p-2 dark:bg-dark-400 hover:border-lemon focus:outline-lemon"
       v-bind="attrs"
       @change="handleChange"
       @input="handleinput"

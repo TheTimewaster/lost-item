@@ -10,7 +10,7 @@ const props = defineProps<{
 
 <template>
   <div class="mb-2">
-    <nuxt-link :to="`/${parentRoute}`" class="font-bold transition-colors text-gray-400 hover:text-black">
+    <nuxt-link :to="`/${parentRoute}`" class="font-bold transition-colors text-gray-400 hover:text-black dark:hover:text-white">
       <icon name="fa6-solid:arrow-left" class="text-sm" />
       {{ parentRouteLabel }}
     </nuxt-link>
@@ -21,7 +21,7 @@ const props = defineProps<{
       <p class="font-bold text-gray-400">
         {{ subtitle }}
       </p>
-      <h1 class="font-serif font-bold text-black mr-4 text-4xl inline">
+      <h1 class="font-serif font-bold mr-4 text-4xl inline">
         {{ title }}
       </h1>
     </div>

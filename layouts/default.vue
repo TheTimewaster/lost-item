@@ -2,7 +2,5 @@
 </script>
 
 <template>
-  <div>
-    <nuxt-page class="max-w-7xl mx-auto p-4" />
-  </div>
+  <nuxt-page class="mx-auto max-w-7xl p-4" />
 </template>

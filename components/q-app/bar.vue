@@ -29,9 +29,9 @@ const parentRoute = computed(() => {
 
 <template>
   <div class="flex w-full py-2 px-4 justify-end">
-    <button class="rounded-xl font-bold bg-lemon-500 py-2 px-4" @click="logout">
+    <q-button @click="logout">
       Logout
-    </button>
+    </q-button>
   </div>
 </template>
 

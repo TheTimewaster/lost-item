@@ -11,31 +11,35 @@ defineExpose({
 
 const i18n = useI18n();
 
-const model = computed<{ label: string; icon: string; tooltip: string }>(() => {
+const model = computed<{ label: string; icon: string; tooltip: string; color: string }>(() => {
   switch (props.status) {
     case ItemStatus.ACTIVE:
       return {
         label: i18n.t('app.component.status.active.label'),
         icon: 'fa6-solid:check',
         tooltip: i18n.t('app.component.status.active.tooltip'),
+        color: 'bg-green',
       };
     case ItemStatus.FOUND:
       return {
         label: i18n.t('app.component.status.found.label'),
         icon: 'fa6-solid:hands-holding',
         tooltip: i18n.t('app.component.status.found.tooltip'),
+        color: 'bg-sky',
       };
     case ItemStatus.LOST:
       return {
         label: i18n.t('app.component.status.lost.label'),
         icon: 'fa6-solid:magnifying-glass',
         tooltip: i18n.t('app.component.status.lost.tooltip'),
+        color: 'bg-red',
       };
     case ItemStatus.LOST_FOREVER:
       return {
         label: i18n.t('app.component.status.lost_forever.label'),
         icon: 'fa6-solid:xmark',
         tooltip: i18n.t('app.component.status.lost_forever.tooltip'),
+        color: 'bg-bg-gray-100',
       };
   }
 });
@@ -46,11 +50,7 @@ const model = computed<{ label: string; icon: string; tooltip: string }>(() => {
     v-tooltip="model.tooltip"
     class="rounded-md font-bold text-white text-sm py-1 px-2 capitalize"
     :class="{
-      'bg-red':
-        status === ItemStatus.LOST.valueOf()
-        || status === ItemStatus.LOST_FOREVER.valueOf(),
-      'bg-sky': status === ItemStatus.FOUND.valueOf(),
-      'bg-green': status === ItemStatus.ACTIVE.valueOf(),
+      [model.color]: true,
     }"
   >
     <Icon :name="model.icon" class="mr-1" />
@@ -58,7 +58,7 @@ const model = computed<{ label: string; icon: string; tooltip: string }>(() => {
   </span>
 </template>
 
-<style>
+<style lang="postcss">
 .p-tooltip-text {
   @apply text-sm;
 }

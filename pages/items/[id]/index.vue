@@ -14,7 +14,7 @@ const i18n = useI18n();
 const route = useRoute();
 
 const { databaseId, collectionId } = useAppConfig();
-const databases = useItems();
+const databases = useDatabases();
 const item = ref<Item>();
 
 const { data: itemData, error } = await useAsyncData('item', () => {
@@ -35,6 +35,7 @@ if (itemData.value != null)
   item.value = itemData.value as Item;
 
 const toast = useToast();
+
 const menuModel = computed<Array<MenuItem>>(() => {
   if (item.value == null)
     return [];
@@ -74,6 +75,15 @@ const menuModel = computed<Array<MenuItem>>(() => {
 useHead({
   title: item.value == null ? 'Quý' : `${item.value.name} | Quý`,
 });
+
+const avatars = useAvatar();
+const qrUrl = ref<string>('');
+onMounted(() => {
+  const url = avatars?.getQR(route.params.id as string, 200, 3);
+
+  if (url != null)
+    qrUrl.value = url.href;
+});
 </script>
 
 <template>
@@ -90,13 +100,13 @@ useHead({
         :item="item"
       >
         <template #actions>
-          <div class="flex gap-2 justify-end">
-            <q-menu :model="menuModel" />
+          <div class="w-auto">
+            <q-menu :items="menuModel" />
           </div>
         </template>
       </q-app-header>
-      <div class="mt-8 grid gap-4 grid-cols-2 xl:grid-cols-3">
-        <div class="rounded-xl bg-gray-100 p-4 xl:col-span-2">
+      <div class="mt-8 grid gap-4 grid-cols-2 lg:grid-cols-3">
+        <div class="rounded-xl bg-gray-100 p-4 col-span-full sm:col-span-1 lg:col-span-2 dark:bg-dark-100">
           <h2 class="font-bold font-serif text-2xl">
             Details
           </h2>
@@ -116,10 +126,13 @@ useHead({
           </p>
         </div>
 
-        <div class="rounded-xl bg-gray-100 p-4 xl:col-span-1">
+        <div class="rounded-xl bg-gray-100 p-4 col-span-full sm:col-span-1 dark:bg-dark-100">
           <h2 class="font-bold font-serif mb-2 text-2xl">
             QR Code
           </h2>
+          <div v-if="qrUrl != null" class="mt-4">
+            <img :src="qrUrl" :alt="route.params.id as string" class="mx-auto">
+          </div>
         </div>
       </div>
     </template>
@@ -127,23 +140,5 @@ useHead({
 </template>
 
 <style lang="postcss">
-.p-menu {
-  @apply shadow-xl py-0 w-[200px] !rounded-xl;
-}
 
-.p-menuitem:hover .p-menuitem-content {
-  @apply cursor-pointer bg-gray-200;
-}
-
-.p-menuitem:first-child .p-menuitem-content {
-  @apply rounded-t-lg;
-}
-
-.p-menuitem:last-child .p-menuitem-content {
-  @apply rounded-b-lg;
-}
-
-.p-menuitem-active .p-menuitem-content {
-  @apply !bg-gray-300;
-}
 </style>
