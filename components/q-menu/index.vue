@@ -20,7 +20,7 @@ const { isSmallerOrEqual } = useBreakpoints({
   md: 640,
 });
 
-watchEffect(() => {
+const unwatchEffect = watchEffect(() => {
   const root = unref(menuRoot);
   const body = unref(menuBody);
   if (root == null || body == null)
@@ -45,6 +45,10 @@ watchEffect(() => {
     top: `${y + height}px`,
     zIndex: '1000',
   };
+});
+
+onUnmounted(() => {
+  unwatchEffect();
 });
 </script>
 

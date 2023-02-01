@@ -6,8 +6,8 @@ export default (props: { type: 'primary' | 'secondary'; size: 'lg' | 'sm'; squar
     'w-12': props.square && props.size === 'lg',
     'h-12 px-4 py-2': props.size === 'lg',
     'w-8': props.square && props.size === 'sm',
-    'h-8 px-2 py-1 leading-none': props.size === 'sm',
-    'rounded-full': props.round,
+    'h-8 px-2 py-1 leading-none rounded-lg': props.size === 'sm',
+    '!rounded-full': props.round,
   }));
 
   return classes;

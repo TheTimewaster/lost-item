@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { QMenu } from '~~/.nuxt/components';
+import { useAccountStore } from '~~/pinia/account';
+
 defineProps({
   header: {
     type: String,
@@ -25,13 +28,26 @@ const parentRoute = computed(() => {
 
   return paths.slice(0, paths.length - 1).join('/');
 });
+
+const account = useAccountStore();
+const avatarService = useAvatar();
+const avatarUrl = ref<string>();
+avatarUrl.value = avatarService?.getInitials(account.account.name, 48, 48).href;
 </script>
 
 <template>
   <div class="flex w-full py-2 px-4 justify-end">
-    <q-button @click="logout">
+    <q-button size="sm" @click="logout">
       Logout
     </q-button>
+
+    <img
+      :src="avatarUrl"
+      alt=""
+      class="rounded-full"
+      width="32"
+      height="32"
+    >
   </div>
 </template>
 

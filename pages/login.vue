@@ -86,13 +86,13 @@ const loginWithCredentials = async (event: Event) => {
         {{ errorMessage }}
       </p>
 
-      <button
-        class="bg-lemon rounded-xl font-bold mt-6 w-full py-2 px-4"
+      <q-button
+        class="mt-4 w-full"
         role="submit"
         :disabled="disableForm"
       >
         {{ i18n.t('app.login.login') }}
-      </button>
+      </q-button>
     </form>
 
     <p class="mt-4">

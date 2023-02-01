@@ -50,7 +50,7 @@ const addItem = async () => {
   <main>
     <div class="flex font-serif font-bold text-4xl text-gray-400 items-center justify-between">
       <span>
-        <nuxt-link to="/items" class="transition-colors hover:text-black">
+        <nuxt-link to="/items" class="transition-colors hover:text-black dark:hover:text-white">
           Your Items
         </nuxt-link>
         <span class="mx-4 text-4xl text-gray-400">/</span>
