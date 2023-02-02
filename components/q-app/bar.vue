@@ -31,7 +31,9 @@ const parentRoute = computed(() => {
 const account = useAccountStore();
 const avatarService = useAvatar();
 const avatarUrl = ref<string>();
-avatarUrl.value = avatarService?.getInitials(account.account.name, 48, 48).href;
+onMounted(() => {
+  avatarUrl.value = avatarService?.getInitials(account.account.name, 48, 48).href;
+});
 </script>
 
 <template>
