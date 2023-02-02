@@ -1,9 +1,63 @@
 <script setup lang="ts">
+import type { Item } from '~~/types/models';
+import { ItemStatus } from '~~/types/models';
 
+const route = useRoute();
+
+const { databaseId, collectionId } = useAppConfig();
+const databases = useDatabases();
+const item = ref<Item>();
+const { data: itemData, error } = await useAsyncData('item', () => {
+  try {
+    return databases.getDocument<Item>(
+      databaseId,
+      collectionId,
+      route.params.id as string,
+    );
+  }
+  catch (error) {
+    console.error(error);
+    throw error;
+  }
+});
+
+if (itemData.value != null)
+  item.value = itemData.value as Item;
 </script>
 
 <template>
-  <div />
+  <main class="flex h-full justify-center items-center">
+    <div v-if="item != null" class="bg-white rounded-xl max-w-lg p-8 dark:bg-dark-600">
+      <p class="text-center mb-2">
+        You have found
+      </p>
+      <h1 class="font-bold font-serif text-center mb-4 text-6xl">
+        {{ item.name }}
+      </h1>
+
+      <p v-if="item.description != null && item.description.length > 0" class="mb-4 texte-center">
+        {{ item.description }}
+      </p>
+
+      <template v-if="item.status === ItemStatus.ACTIVE">
+        <p class="text-center mb-4">
+          This item currently is not reported as lost. If you want to notify the owner, click the button below:
+        </p>
+
+        <q-button label="Notify owner" class="w-full md:max-w-40" />
+      </template>
+
+      <template v-if="item.status === ItemStatus.LOST">
+        <p class="text-center mb-4">
+          This item currently is reported as lost. If you want to notify the owner, click the button below:
+        </p>
+
+        <div class="flex justify-center">
+          <q-button label="Notify owner" class="w-full md:max-w-40" />
+        </div>
+      </template>
+    </div>
+  </main>
 </template>
 
 <style scoped>

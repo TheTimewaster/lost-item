@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { QMenu } from '~~/.nuxt/components';
 import { useAccountStore } from '~~/pinia/account';
 
 defineProps({
@@ -13,8 +12,8 @@ const { $appwriteAccount } = useNuxtApp();
 const router = useRouter();
 const sessionCookie = useCookie('quy-session');
 const logout = async () => {
-  sessionCookie.value = '';
-  await $appwriteAccount.deleteSessions();
+  sessionCookie.value = null;
+  await $appwriteAccount.deleteSession('current');
 
   router.push('/');
 };
