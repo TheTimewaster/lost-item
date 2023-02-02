@@ -36,6 +36,7 @@ const addItem = async () => {
     name: newItem.name,
     description: newItem.description,
     status: ItemStatus.ACTIVE,
+    owner: account.$id,
   }, [
     Permission.read(Role.any()),
     Permission.read(Role.user(account.account.$id)),
