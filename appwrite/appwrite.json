@@ -73,7 +73,9 @@
                 ".npm"
             ],
             "execute": [],
-            "events": ["databases.632f022a4cfb7b0fa965.collections.632f022f915002331adc.documents.*.create"],
+            "events": [
+                "databases.632f022a4cfb7b0fa965.collections.632f022f915002331adc.documents.*.create"
+            ],
             "schedule": "",
             "timeout": 15
         }
