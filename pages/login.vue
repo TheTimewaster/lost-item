@@ -90,6 +90,7 @@ const loginWithCredentials = async (event: Event) => {
         class="mt-4 w-full"
         role="submit"
         :disabled="disableForm"
+        @click="loginWithCredentials"
       >
         {{ i18n.t('app.login.login') }}
       </q-button>
