@@ -1,26 +1,79 @@
 <script setup lang="ts">
-import type { MenuItem } from 'primevue/menuitem';
+import { Icon } from '@iconify/vue';
+import ODropdownItem from '@oruga-ui/oruga-next/src/components/dropdown/DropdownItem.vue';
 
-defineProps<{
-  item: MenuItem & { faIcon?: string }
-}>();
+withDefaults(defineProps<{
+  label: string
+  icon?: string
+  component?: 'button' | 'nuxt-link' | 'a'
+  to?: string
+}>(), {
+  icon: undefined,
+  component: 'button',
+});
+
+const emit = defineEmits<{ (e: 'click', event: Event): void }>();
+const classes = 'bg-white text-black py-2 px-4 flex items-center dark:bg-dark-100 dark:text-white hover:bg-gray-100 hover:dark:bg-dark-50 first:rounded-t-lg last:rounded-b-lg w-full text-left';
 </script>
 
 <template>
-  <router-link
-    v-if="item.to"
-    :to="item.to"
-    class="py-4 px-4 block md:py-2 first:pb-0"
+  <ODropdownItem
+    v-if="component === 'nuxt-link'"
+    tag="router-link"
+    :to="to"
+    aria-role="listitem"
+    :class="classes"
+    override
   >
-    <icon v-if="item.faIcon" :name="item.faIcon" class="mr-2" />
-    {{ item.label }}
-  </router-link>
-  <a
+    <slot>
+      <Icon
+        v-if="icon != null"
+        :icon="icon"
+        :name="icon"
+        class="w-4"
+        :class="{ 'mr-4': label != null }"
+      />
+      {{ label }}
+    </slot>
+  </ODropdownItem>
+
+  <ODropdownItem
+    v-else-if="component === 'a'"
+    tag="a"
+    aria-role="listitem"
+    :to="to"
+    :class="classes"
+    override
+  >
+    <slot>
+      <Icon
+        v-if="icon != null"
+        :icon="icon"
+        :name="icon"
+        class="w-4"
+        :class="{ 'mr-4': label != null }"
+      />
+      {{ label }}
+    </slot>
+  </ODropdownItem>
+
+  <ODropdownItem
     v-else
-    class="py-4 px-4 block md:py-2 first:pb-0"
-    @click.stop="item.command"
+    :tag="component"
+    aria-role="listitem"
+    :class="classes"
+    override
+    @click="$event => emit('click', $event)"
   >
-    <icon v-if="item.faIcon" :name="item.faIcon" class="mr-2" />
-    {{ item.label }}
-  </a>
+    <slot>
+      <Icon
+        v-if="icon != null"
+        :icon="icon"
+        :name="icon"
+        class="w-4"
+        :class="{ 'mr-4': label != null }"
+      />
+      {{ label }}
+    </slot>
+  </ODropdownItem>
 </template>
