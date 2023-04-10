@@ -1,6 +1,6 @@
 {
-    "projectId": "quy-lost-and-found",
-    "projectName": "Quy - Lost and Found",
+    "projectId": "quy",
+    "projectName": "quy",
     "collections": [
         {
             "$id": "632f022f915002331adc",
