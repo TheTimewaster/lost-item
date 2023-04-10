@@ -1,15 +1,16 @@
-import { Account, Client } from 'appwrite';
-import Appwrite from 'node-appwrite';
 import { useAccountStore } from '~~/pinia/account';
 
 export default defineNuxtPlugin(async () => {
+  const route = useRoute();
   let appwriteClient, appwriteAccount;
-  const { application, endpoint } = useAppConfig();
-  const sessionCookie = useCookie('quy-session');
-  const accountStore = useAccountStore();
 
-  if (process.client) {
+  if (!route.meta.public) {
+    const { application, endpoint } = useAppConfig().appwrite;
+    const sessionCookie = useCookie('quy-session');
+    const accountStore = useAccountStore();
+
     try {
+      const { Client, Account } = await import('appwrite');
       appwriteClient = new Client();
       appwriteClient
         .setEndpoint(endpoint)
@@ -36,37 +37,20 @@ export default defineNuxtPlugin(async () => {
           sessionCookie.value = jwt;
         }
       }
+
+      return {
+        provide: {
+          appwriteClient,
+          appwriteAccount,
+        },
+      };
     }
     catch (error) {
       console.error(error);
     }
   }
-  else {
-    appwriteClient = new Appwrite.Client();
-    appwriteAccount = new Appwrite.Account(appwriteClient);
-
-    appwriteClient
-      .setEndpoint(endpoint)
-      .setProject(application);
-
-    if (sessionCookie.value != null) {
-      try {
-        appwriteClient
-          .setJWT(sessionCookie.value);
-
-        const account = await appwriteAccount.get();
-        accountStore.account = account;
-      }
-      catch (error) {
-      // do nothing and let the client fix
-      }
-    }
-  }
 
   return {
-    provide: {
-      appwriteClient: appwriteClient as unknown as Client,
-      appwriteAccount: appwriteAccount as unknown as Account,
-    },
+    provide: { appwriteAccount, appwriteClient },
   };
 });

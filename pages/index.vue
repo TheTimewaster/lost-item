@@ -2,6 +2,12 @@
 useHead({
   title: 'Quý | Your service for tagging your personal items',
 });
+
+definePageMeta({
+  public: true,
+});
+
+const i18n = useI18n();
 </script>
 
 <template>
@@ -16,18 +22,19 @@ useHead({
         <br>
       </p>
       <div class="flex mt-4 gap-4 justify-center md:justify-start">
-        <nuxt-link
+        <QButton
+          component="nuxt-link"
           to="/items"
-          class="rounded-xl font-bold bg-lemon-500 text-white py-3 px-6 transition-colors hover:bg-lemon-400"
+          class="rounded-xl font-bold bg-lemon-500 text-black py-3 px-6 transition-colors hover:bg-lemon-400"
         >
-          Get started
-        </nuxt-link>
-        <nuxt-link
+          {{ i18n.t('main.get-started') }}
+        </QButton>
+        <NuxtLink
           to="/about"
           class="rounded-xl font-bold bg-gray-200 py-3 px-6 transition-colors hover:bg-gray-100"
         >
-          Learn more
-        </nuxt-link>
+          {{ i18n.t('main.learn-more') }}
+        </NuxtLink>
       </div>
     </section>
   </main>
