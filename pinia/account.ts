@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import type { Models } from 'appwrite';
+
 export const useAccountStore = defineStore('account', {
   state: () => {
     return {

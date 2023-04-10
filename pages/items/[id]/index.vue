@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { type MenuItem } from 'primevue/menuitem';
 import { useToast } from 'primevue/usetoast';
 import type { Item } from '~~/types/models';
 import { ItemStatus } from '~~/types/models';
@@ -13,7 +12,7 @@ const i18n = useI18n();
 
 const route = useRoute();
 
-const { databaseId, collectionId } = useAppConfig();
+const { databaseId, collectionId } = useAppConfig().appwrite;
 const databases = useDatabases();
 const item = ref<Item>();
 
@@ -36,41 +35,27 @@ if (itemData.value != null)
 
 const toast = useToast();
 
-const menuModel = computed<Array<MenuItem>>(() => {
+const changeStatus = async (status: ItemStatus) => {
   if (item.value == null)
-    return [];
+    return;
 
-  return [
+  const updatedItem = await databases.updateDocument<Item>(
+    databaseId,
+    collectionId,
+    item.value.$id,
     {
-      label: 'Found',
-      faIcon: 'fa6-solid:hands-holding',
-      command: async () => {
-        if (item.value == null)
-          return;
-
-        await databases.updateDocument<Item>(
-          databaseId,
-          collectionId,
-          item.value.$id,
-          {
-            status: ItemStatus.FOUND,
-          },
-        );
-
-        toast.add({
-          severity: 'success',
-          summary: 'Status was changed to "found"',
-          life: 5000,
-        });
-      },
+      status,
     },
-    {
-      label: 'Edit',
-      faIcon: 'fa6-solid:pen',
-      to: `/items/${item.value.$id}/edit`,
-    },
-  ];
-});
+  );
+
+  toast.add({
+    severity: 'success',
+    summary: 'Status was changed to "found"',
+    life: 5000,
+  });
+
+  item.value = updatedItem;
+};
 
 useHead({
   title: item.value == null ? 'Quý' : `${item.value.name} | Quý`,
@@ -101,7 +86,40 @@ onMounted(() => {
       >
         <template #actions>
           <div class="w-auto">
-            <q-menu :items="menuModel" />
+            <q-menu>
+              <template #trigger>
+                <q-button
+                  icon="fa6-solid:ellipsis"
+                  size="sm"
+                  square
+                  round
+                />
+              </template>
+              <q-menu-item
+                v-if="item.status !== ItemStatus.FOUND"
+                label="Found"
+                icon="fa6-solid:hands-holding"
+                @click="changeStatus(ItemStatus.FOUND)"
+              />
+              <q-menu-item
+                v-if="item.status !== ItemStatus.LOST"
+                label="Lost"
+                icon="fa6-solid:magnifying-glass"
+                @click="changeStatus(ItemStatus.LOST)"
+              />
+              <q-menu-item
+                v-if="item.status !== ItemStatus.LOST_FOREVER"
+                label="Lost forever"
+                icon="fa6-solid:xmark"
+                @click="changeStatus(ItemStatus.LOST_FOREVER)"
+              />
+              <q-menu-item
+                component="nuxt-link"
+                label="Edit"
+                icon="fa6-solid:pen"
+                :to="`/items/${item.$id}/edit`"
+              />
+            </q-menu>
           </div>
         </template>
       </q-app-header>

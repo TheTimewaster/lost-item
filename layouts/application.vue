@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Toast from 'primevue/toast';
 import { useAccountStore } from '~~/pinia/account';
 import { AppBarHeaderKey } from '~~/scripts/symbols';
 
@@ -20,7 +21,7 @@ useHead({
       <nuxt-page class="bg-white rounded-lg flex-1 mb-8 p-4 dark:bg-dark-600" />
     </div>
   </div>
-  <toast />
+  <Toast />
 </template>
 
 <style lang="scss" scoped></style>

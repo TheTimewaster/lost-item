@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { AppBarHeaderKey } from '~~/scripts/symbols';
 import type { Item } from '~~/types/models';
+
 const { t } = useI18n();
 
 definePageMeta({
@@ -12,7 +13,7 @@ useHead({
   title: `${t('app.your_items')} | Quý`,
 });
 
-const { databaseId, collectionId } = useAppConfig();
+const { databaseId, collectionId } = useAppConfig().appwrite;
 const databases = useDatabases();
 const { data, error } = await useAsyncData('items', () => databases.listDocuments<Item>(databaseId, collectionId));
 

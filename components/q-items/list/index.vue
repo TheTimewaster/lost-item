@@ -25,18 +25,18 @@ defineProps({
         class="md:mb-4"
       />
       <div class="flex justify-center">
-        <q-button-link to="/items/add" component="nuxt-link">
+        <q-button to="/items/add" component="nuxt-link">
           Add an item
-        </q-button-link>
+        </q-button>
       </div>
     </div>
     <div v-else class="flex flex-col min-h-64 justify-center items-center">
       <p class="mb-4">
         Seems like you did not added an item.
       </p>
-      <q-button-link to="/items/add" component="nuxt-link">
+      <q-button to="/items/add" component="nuxt-link">
         Add an item
-      </q-button-link>
+      </q-button>
     </div>
   </main>
 </template>

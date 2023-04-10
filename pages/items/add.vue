@@ -28,7 +28,7 @@ const newItem = reactive<NewItem>({
 const router = useRouter();
 const account = useAccountStore();
 const addItem = async () => {
-  const { databaseId, collectionId } = useAppConfig();
+  const { databaseId, collectionId } = useAppConfig().appwrite;
   const databases = useDatabases();
   const newId = nanoid(8);
 
@@ -55,7 +55,7 @@ const addItem = async () => {
           Your Items
         </nuxt-link>
         <span class="mx-4 text-4xl text-gray-400">/</span>
-        <h1 class="text-white mr-4 inline">
+        <h1 class="text-black mr-4 inline dark:text-white">
           Add item
         </h1>
       </span>
