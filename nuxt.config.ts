@@ -1,6 +1,6 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  modules: ['@pinia/nuxt', '@vueuse/nuxt', 'nuxt-windicss', 'nuxt-icon', '@nuxtjs/i18n'],
+  modules: ['@pinia/nuxt', '@vueuse/nuxt', 'nuxt-icon', '@nuxtjs/i18n'],
   app: {
     head: {
       // link: [
@@ -35,17 +35,20 @@ export default defineNuxtConfig({
     langDir: './locales',
     baseUrl: 'http://localhost:3000',
     defaultLocale: 'en',
-    vueI18n: {
-      legacy: false,
-      locale: 'en',
-    },
   },
   css: [
+    '@/assets/css/main.css',
     'primevue/resources/themes/tailwind-light/theme.css',
     'primevue/resources/primevue.css',
   ],
   build: {
     transpile: ['primevue'],
+  },
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
   },
   vite: {
     define: {

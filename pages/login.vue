@@ -61,7 +61,7 @@ const loginWithCredentials = async (event: Event) => {
 
 <template>
   <main class="mx-auto max-w-lg p-8">
-    <h1 class="font-bold font-serif text-4xl">
+    <h1 class="font-bold font-serif text-4xl text-center">
       {{ i18n.t('app.login.sign_in_with') }}
     </h1>
 
@@ -69,6 +69,7 @@ const loginWithCredentials = async (event: Event) => {
       <q-input-text
         id="login-password"
         v-model="credentials.email"
+        class="mb-2"
         label="E-Mail"
         :disabled="disableForm"
       />
@@ -76,6 +77,7 @@ const loginWithCredentials = async (event: Event) => {
       <q-input-text
         id="login-password"
         v-model="credentials.password"
+        class="mb-2"
         label="Password"
         type="password"
         autocomplete="current-password"
@@ -101,13 +103,13 @@ const loginWithCredentials = async (event: Event) => {
     </p>
 
     <div class="mt-4">
-      <button
-        class="rounded-xl font-bold bg-dark-300 text-white w-full py-2 px-4"
+      <q-button
+        class="rounded-xl font-bold bg-dark-300 text-white w-full py-2 px-4 dark:text-white"
         :disabled="disableForm"
         @click="signInWithGithub"
       >
         Github
-      </button>
+      </q-button>
     </div>
   </main>
 </template>

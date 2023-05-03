@@ -17,7 +17,7 @@ const props = defineProps<{
   </div>
   <div class="flex flex-1 gap-4 justify-between">
     <div class="bg-lemon rounded-xl h-24 w-24" />
-    <div class="flex-1 ">
+    <div class="flex-1">
       <p class="font-bold text-gray-400">
         {{ subtitle }}
       </p>

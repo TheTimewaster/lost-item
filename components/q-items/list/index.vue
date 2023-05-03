@@ -1,13 +1,7 @@
 <script setup lang="ts">
-import type { PropType } from 'vue';
 import type { Item } from '~~/types/models';
 
-defineProps({
-  items: {
-    type: Array as PropType<Array<Item>>,
-    default: () => [],
-  },
-});
+withDefaults(defineProps<{ items: Array<Item> }>(), { items: () => [] });
 </script>
 
 <template>

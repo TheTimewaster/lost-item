@@ -1,14 +1,12 @@
-import { defineConfig } from 'windicss/helpers';
-
-export default defineConfig({
-  darkMode: 'media',
-  extract: {
-    include: [
-      'pages/**/*.{vue,ts}',
-      'components/**/*.{vue,ts}',
-      'layouts/**/*.{vue,ts}',
-    ],
-  },
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    './components/**/*.{js,vue,ts}',
+    './layouts/**/*.vue',
+    './pages/**/*.vue',
+    './plugins/**/*.{js,ts}',
+    './nuxt.config.{js,ts}',
+  ],
   theme: {
     extend: {
       fontFamily: {
@@ -54,7 +52,13 @@ export default defineConfig({
           800: '#7D6A05',
           900: '#473C03',
         },
+        'dark': {
+          DEFAULT: '#222222',
+          50: '#4a4a4a',
+          100: '#3c3c3c',
+        },
       },
     },
   },
-});
+  plugins: [],
+};
