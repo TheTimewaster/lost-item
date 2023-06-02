@@ -13,7 +13,7 @@ const i18n = useI18n();
 const route = useRoute();
 
 const { databaseId, collectionId } = useAppConfig().appwrite;
-const databases = useDatabases();
+const databases = await useDatabases();
 const item = ref<Item>();
 
 const { data: itemData, error } = await useAsyncData('item', () => {

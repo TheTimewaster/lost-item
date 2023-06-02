@@ -5,7 +5,7 @@ import { ItemStatus } from '~~/types/models';
 const route = useRoute();
 
 const { databaseId, collectionId } = useAppConfig().appwrite;
-const databases = useDatabases();
+const databases = await useDatabases();
 const item = ref<Item>();
 const { data: itemData } = await useAsyncData('item', () => {
   try {

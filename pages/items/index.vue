@@ -14,7 +14,7 @@ useHead({
 });
 
 const { databaseId, collectionId } = useAppConfig().appwrite;
-const databases = useDatabases();
+const databases = await useDatabases();
 const { data, error } = await useAsyncData('items', () => databases.listDocuments<Item>(databaseId, collectionId));
 
 const header = inject(AppBarHeaderKey);

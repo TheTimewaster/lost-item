@@ -7,7 +7,7 @@ defineProps<{ item: Item }>();
 <template>
   <nuxt-link
     :to="`/items/${item.$id}`"
-    class="rounded-xl flex outline-none p-4 transition-all gap-4 group md:bg-gray-100 hover:(bg-gray-50) focus:(outline-solid-lemon) md:dark:bg-dark-100 dark:hover:(bg-dark-50)"
+    class="rounded-xl flex outline-none p-4 transition-all gap-4 group md:bg-gray-100 hover:bg-gray-50 focus:outline-solid-lemon md:dark:bg-dark-100 dark:hover:bg-dark-50"
   >
     <div class="bg-lemon rounded-xl h-[4rem] text-center py-3  w-[4rem] md:h-[5rem] md:py-5 md:w-[5rem]">
       <icon name="fa6-solid:umbrella" class="text-4xl text-dark-50 md:text-4xl " />

@@ -11,26 +11,20 @@ defineProps({
 const { $appwriteAccount } = useNuxtApp();
 const router = useRouter();
 const sessionCookie = useCookie('quy-session');
+const accountStore = useAccountStore();
 const logout = async () => {
+  // TODO: set null to session cookie does not work
   sessionCookie.value = null;
+  accountStore.account = null;
   await $appwriteAccount.deleteSession('current');
 
   router.push('/');
 };
 
-const route = useRoute();
-const parentRoute = computed(() => {
-  const paths = route.fullPath.split('/');
-
-  if (paths.length === 2)
-    return null;
-
-  return paths.slice(0, paths.length - 1).join('/');
-});
-
 const account = useAccountStore();
 const avatarService = useAvatar();
 const avatarUrl = ref<string>();
+
 onMounted(() => {
   avatarUrl.value = avatarService?.getInitials(account.account.name, 48, 48).href;
 });

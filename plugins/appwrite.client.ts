@@ -3,10 +3,10 @@ import { useAccountStore } from '~~/pinia/account';
 export default defineNuxtPlugin(async () => {
   const route = useRoute();
   let appwriteClient, appwriteAccount;
+  const sessionCookie = useCookie('quy-session');
 
-  if (!route.meta.public) {
+  if (!route.meta.public || sessionCookie.value != null) {
     const { application, endpoint } = useAppConfig().appwrite;
-    const sessionCookie = useCookie('quy-session');
     const accountStore = useAccountStore();
 
     try {
@@ -50,7 +50,5 @@ export default defineNuxtPlugin(async () => {
     }
   }
 
-  return {
-    provide: { appwriteAccount, appwriteClient },
-  };
+  return {};
 });

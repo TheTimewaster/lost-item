@@ -10,12 +10,12 @@ definePageMeta({
       return '/items';
   },
 });
-const { $appwriteAccount } = useNuxtApp();
+const { appwriteAccount } = await useAppwrite();
 
 const disableForm = ref<boolean>(false);
 const signInWithGithub = () => {
   disableForm.value = true;
-  $appwriteAccount.createOAuth2Session(
+  appwriteAccount.createOAuth2Session(
     'github',
     'http://localhost:3000/items',
     'http://localhost:3000',
@@ -40,11 +40,11 @@ const loginWithCredentials = async (event: Event) => {
 
   disableForm.value = true;
   try {
-    await $appwriteAccount.createEmailSession(credentials.email, credentials.password);
-    const account = await $appwriteAccount.get();
+    await appwriteAccount.createEmailSession(credentials.email, credentials.password);
+    const account = await appwriteAccount.get();
     accountStore.account = account;
 
-    const { jwt } = await $appwriteAccount.createJWT();
+    const { jwt } = await appwriteAccount.createJWT();
     sessionCookie.value = jwt;
 
     router.push('/items');

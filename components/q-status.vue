@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue';
+import {
+  Icon,
+} from '@iconify/vue';
 import OTooltip from '@oruga-ui/oruga-next/src/components/tooltip/Tooltip.vue';
 import { ItemStatus } from '~~/types/models';
 
@@ -53,7 +55,7 @@ const model = computed<{ label: string; icon: string; tooltip: string; itemClass
     size="large"
     position="auto"
     multiline
-    content-class="!bg-white text-black rounded-lg shadow-xl min-w-80 px-4 py-2 !text-left dark:(!bg-gray-900 text-white)"
+    content-class="!bg-white text-black rounded-lg shadow-xl min-w-[20rem] px-4 py-2 dark:!bg-gray-900 dark:text-white"
     arrow-class="hidden"
   >
     <span

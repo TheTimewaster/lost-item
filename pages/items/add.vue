@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { Permission } from 'appwrite';
+import { Permission, Role } from 'appwrite';
 import { nanoid } from 'nanoid';
-import { Role } from 'node-appwrite';
 import { useAccountStore } from '~~/pinia/account';
 import type { Item } from '~~/types/models';
 import { ItemStatus } from '~~/types/models';
@@ -29,7 +28,7 @@ const router = useRouter();
 const account = useAccountStore();
 const addItem = async () => {
   const { databaseId, collectionId } = useAppConfig().appwrite;
-  const databases = useDatabases();
+  const databases = await useDatabases();
   const newId = nanoid(8);
 
   await databases.createDocument<Item>(databaseId, collectionId, newId, {

@@ -13,6 +13,9 @@
         "max": 1
       }
     }],
+    "vue/comma-dangle": 0,
+    "vue/dot-location": 0,
+    "vue/space-infix-ops": 0,
     "antfu/top-level-function": 0
   }
 }

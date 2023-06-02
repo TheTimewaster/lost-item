@@ -5,7 +5,7 @@ import ODropdown from '@oruga-ui/oruga-next/src/components/dropdown/Dropdown.vue
 <template>
   <ODropdown
     aria-role="list"
-    menu-class="rounded-lg w-full !<md:top-auto !<md:bottom-0 md:min-w-40 md:shadow-xl"
+    menu-class="rounded-lg w-full md:min-w-[10rem] md:shadow-xl"
     position="bottom-left"
   >
     <template #trigger="{ active }">
